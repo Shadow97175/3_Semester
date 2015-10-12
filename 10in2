@@ -1,0 +1,91 @@
+#include <string>
+#include <locale.h>
+#include <iostream>
+#include <cmath>
+
+
+std::string Celaya(double H)
+{
+	char symbol;
+	std::string leg;
+	int intH = (int)H;
+	while (intH != 1)
+	{
+		int f = intH % 2;
+		if (f == 1)
+		{
+			symbol = '1';
+		}
+		else
+		{
+			symbol = '0';
+		}
+		leg = symbol + leg;
+		intH = intH / 2;
+	}
+	leg = '1' + leg;
+	return leg;
+}
+
+
+std::string drobnaya(double J, int len)
+{
+	std::string led;
+	int i = 0;
+	char symbol;
+	double gJ = J;
+	if (gJ == 0.0)
+	{
+		return led;
+	}
+	led = '.' + led;
+	while ((i < len) || ((gJ - (int)gJ) == 0.0))
+	{
+		gJ *= 2;
+		if ((int)gJ == 1)
+		{
+			symbol = '1';
+		}
+		else
+		{
+			symbol = '0';
+		}
+		led = led + symbol;
+		i++;
+		gJ = gJ - (int)gJ;
+	}
+	return led;
+}
+
+
+int main(void)
+{
+	setlocale(LC_ALL, "Russian");
+	double in10, chel, drob;
+	int t = 0;
+	std::string gH;
+	std::cout << "Введите рациональное число в десятичной системы счисления:" << std::endl;
+	std::cin >> in10;
+	drob = modf(in10, &chel);
+	if (std::cin.fail())
+	{
+		std::cout << "Некорректный ввод" << std::endl;
+		return 0;
+	}
+	if (in10 < 0)
+	{
+		gH = '-' + gH;
+	}
+	if (in10 - (int)in10 != 0)
+	{
+		std::cout << "Сколько знаков после запятой (максимум 8)?" << std::endl;
+		std::cin >> t;
+		if (std::cin.fail() || (t > 8))
+		{
+			std::cout << "Некорректный ввод" << std::endl;
+			return 0;
+		}
+	}
+	gH = Celaya(chel) + drobnaya(drob, t);
+	std::cout << "Ваше число в двоичной системе счисления:\n" << gH << std::endl;
+}
