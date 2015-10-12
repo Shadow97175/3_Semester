@@ -1,7 +1,6 @@
 #include <string>
 #include <locale.h>
 #include <iostream>
-#include <cmath>
 
 
 std::string Celaya(double H)
@@ -33,7 +32,7 @@ std::string drobnaya(double J, int len)
 	std::string led;
 	int i = 0;
 	char symbol;
-	double gJ = J;
+	double gJ = J - (int)J;
 	if (gJ == 0.0)
 	{
 		return led;
@@ -61,12 +60,11 @@ std::string drobnaya(double J, int len)
 int main(void)
 {
 	setlocale(LC_ALL, "Russian");
-	double in10, chel, drob;
+	double in10;
 	int t = 0;
 	std::string gH;
 	std::cout << "Введите рациональное число в десятичной системы счисления:" << std::endl;
 	std::cin >> in10;
-	drob = modf(in10, &chel);
 	if (std::cin.fail())
 	{
 		std::cout << "Некорректный ввод" << std::endl;
@@ -86,6 +84,6 @@ int main(void)
 			return 0;
 		}
 	}
-	gH = Celaya(chel) + drobnaya(drob, t);
+	gH = Celaya(in10) + drobnaya(in10, t);
 	std::cout << "Ваше число в двоичной системе счисления:\n" << gH << std::endl;
 }
