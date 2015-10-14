@@ -8,6 +8,12 @@ std::string Celaya(double H)
 	char symbol;
 	std::string leg;
 	int intH = (int)H;
+	if (intH == 0)
+	{
+		symbol = '0';
+		leg = symbol;
+		return leg;
+	}
 	while (intH != 1)
 	{
 		int f = intH % 2;
