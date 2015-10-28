@@ -8,6 +8,11 @@ std::string read()
 	std::string in;
 	std::cout << "Enter a fractional decimal number:" << std::endl;;
 	std::cin >> in;
+	if ((std::cin.fail()) || (input.begin() != '-') || (input.begin() != '+'))
+	{
+		std::cout << "Invalid input" << std::endl;
+		std::terminate();
+	}
 	return in;
 }
 
@@ -79,8 +84,8 @@ int main(void)
 	if (input[0] == '-')
 	{
 		zn = 1;
-		input.erase(input.begin());
 	}
+	input.erase(input.begin());
 	for (int i = 0; i < (int)input.length(); i++)
 	{
 		if (input[i] == ',')
