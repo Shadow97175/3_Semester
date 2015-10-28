@@ -14,14 +14,14 @@ std::string read()
 		std::terminate();
 	}
 	int err = 0;
-	for (int i = 0; i < in.length(); i++)
+	for (int i = 1; i < in.length(); i++)
 	{
 		if (!isdigit(in[i]) && (in[i] != ',') && (in[i] != '.'))
 		{
 			std::cout << "Error! Invalid symbols" << std::endl;
 			std::terminate();
 		}
-		if ((in[i] != ',') || (in[i] != '.'))
+		if ((in[i] == ',') || (in[i] == '.'))
 		{
 			err++;
 		}
