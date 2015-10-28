@@ -10,7 +10,25 @@ std::string read()
 	std::cin >> in;
 	if ((std::cin.fail()) || ((in[0] != '-') && (in[0] != '+')))
 	{
-		std::cout << "Invalid input" << std::endl;
+		std::cout << "Error! Invalid input" << std::endl;
+		std::terminate();
+	}
+	int err = 0;
+	for (int i = 0; i < in.length(); i++)
+	{
+		if (!isdigit(in[i]) && (in[i] != ',') && (in[i] != '.'))
+		{
+			std::cout << "Error! Invalid symbols" << std::endl;
+			std::terminate();
+		}
+		if ((in[i] != ',') || (in[i] != '.'))
+		{
+			err++;
+		}
+	}
+	if (err > 1)
+	{
+		std::cout << "Error! More than one delimiters" << std::endl;
 		std::terminate();
 	}
 	return in;
