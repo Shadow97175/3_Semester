@@ -130,5 +130,5 @@ int main(void)
 	std::cout << "Sign: " << zn << std::endl;
 	std::cout << "Exponent: " << por << std::endl;
 	std::cout << "Mantissa (normalized): ";
-	printf("%.8f", a, "\n");
+	printf("%.8f, \n", a);
 }
